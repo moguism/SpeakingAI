@@ -1,5 +1,6 @@
 import javax.sound.sampled.*;
 import java.io.*;
+import java.util.Scanner;
 
 public class GrabadorAudio {
 
@@ -40,8 +41,6 @@ public class GrabadorAudio {
         linea.stop();
         linea.close();
         guardarAudioEnArchivo();
-
-        // Llama al script de Python después de guardar el audio
         ejecutarScriptPython("main.py");
 
         System.out.println("Grabación detenida. Audio guardado en 'grabacion.wav'.");
@@ -63,8 +62,7 @@ public class GrabadorAudio {
 
     private void guardarAudioEnArchivo() {
         try {
-            AudioSystem.write(
-                    new AudioInputStream(new ByteArrayInputStream(buffer.toByteArray()), formato, buffer.size()),
+            AudioSystem.write(new AudioInputStream(new ByteArrayInputStream(buffer.toByteArray()), formato, buffer.size()),
                     AudioFileFormat.Type.WAVE, new File("grabacion.wav"));
         } catch (IOException e) {
             e.printStackTrace();
@@ -73,7 +71,6 @@ public class GrabadorAudio {
 
     private void ejecutarScriptPython(String script) {
         try {
-            // Ejecuta el script de Python usando el comando de shell
             ProcessBuilder pb = new ProcessBuilder("python", script);
             pb.redirectErrorStream(true);
 
@@ -84,12 +81,10 @@ public class GrabadorAudio {
 
             System.out.println("Salida del script Python:");
 
-            // Lee y muestra la salida del script de Python
             while ((line = reader.readLine()) != null) {
                 System.out.println(line);
             }
 
-            // Espera a que el proceso termine
             int exitCode = process.waitFor();
             System.out.println("El script Python ha finalizado con código de salida: " + exitCode);
 
@@ -99,18 +94,16 @@ public class GrabadorAudio {
     }
 
     public static void main(String[] args) {
+        GrabadorAudio grabador = new GrabadorAudio();
+        Scanner scanner = new Scanner(System.in);
 
-        boolean fin = false;
+        while (true) {
+            System.out.println("Presiona Enter para comenzar la grabación o 'q' para salir...");
+            String entrada = scanner.nextLine();
 
-        while (fin == false) {
-
-            GrabadorAudio grabador = new GrabadorAudio();
-
-            System.out.println("Presiona Enter para comenzar la grabación...");
-            try {
-                System.in.read();
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (entrada.equals("q")) {
+                System.out.println("Saliendo del programa...");
+                break;
             }
 
             grabador.comenzarGrabacion();
@@ -123,8 +116,8 @@ public class GrabadorAudio {
             }
 
             grabador.detenerGrabacion();
-
         }
 
+        scanner.close();
     }
 }
