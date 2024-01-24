@@ -1,5 +1,12 @@
 # SpeakingAI
-Repositorio que contiene el trabajo con la IA de voz, escrita en Java.  
-Por ahora puede hacer todo desde grabar audio hasta decir por voz la respuesta de ChatGPT.  
-**Queda especificar cómo quiero que responda ChatGPT, y quizás algo de optimización.**  
-Por comodidad, las llamadas a la transcripción y a la IA generativa estarán en Python.  
+Herramienta para diálogos en inglés.  
+
+Escrito en Java y Python, el sistema graba tu voz y la utiliza como prompt para la IA, cuya respuesta es reproducida como audio con el objetivo de mantener un diálogo.  
+
+# Instrucciones de instalación
+
+(Pendiente de redactar)  
+
+# Instrucciones de uso
+
+(Pendiente de redactar)
