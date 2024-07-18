@@ -1,4 +1,3 @@
-transcripcion.mp3
+*.mp3
 *.wav
-lib64/
 *.class
