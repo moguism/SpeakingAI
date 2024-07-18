@@ -1,2 +1,0 @@
-- Tener instalado los paquetes "espeak" y "espeak-devel"
-- Tener instalado los paquete "portaudio" y "portaudio-devel"

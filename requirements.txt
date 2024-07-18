@@ -1,0 +1,6 @@
+vosk
+gtts
+wheel
+playsound
+openai
+wave

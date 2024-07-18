@@ -30,7 +30,7 @@ public class GrabadorAudio {
 
             hiloGrabacion.start();
 
-            System.out.println("Grabando... Presiona Enter para detener.");
+            System.out.println("Grabando... Presiona Enter para detener. ");
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
@@ -98,7 +98,7 @@ public class GrabadorAudio {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Presiona Enter para comenzar la grabación o 'q' para salir...");
+            System.out.print("Presiona Enter para comenzar la grabación o 'q' para salir... ");
             String entrada = scanner.nextLine();
 
             if (entrada.equals("q")) {
@@ -108,7 +108,7 @@ public class GrabadorAudio {
 
             grabador.comenzarGrabacion();
 
-            System.out.println("Presiona Enter para detener la grabación...");
+            System.out.print("Presiona Enter para detener la grabación...");
             try {
                 System.in.read();
             } catch (Exception e) {

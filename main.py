@@ -8,7 +8,7 @@ from openai import OpenAI
 
 client = OpenAI(
 
-    api_key = "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"
+    api_key = os.environ.get("OPENAI_API_KEY")
 
 )
 
@@ -36,7 +36,7 @@ def obtener_respuesta_gpt(texto_usuario):
 
         model="gpt-3.5-turbo",
         messages = [
-            {"role": "system", "content": "ENUNCIADO AQUÍ. Your parter will be the prompt that I'll be giving you, and don't give too much information each time"},
+            {"role": "system", "content": os.environ.get("ENUNCIADO") + ". Your parter will be the prompt that I'll be giving you, and don't give too much information each time"},
             {"role": "user", "content": texto_usuario}
         ]
         
@@ -50,12 +50,7 @@ if __name__ == "__main__":
 
     if os.path.exists(archivo_audio):
         transcripcion = transcribir_audio(archivo_audio)
-        #print("Transcripción del audio:")
-        #print(transcripcion)
-
         respuesta_gpt = obtener_respuesta_gpt(transcripcion)
-        print("Respuesta de ChatGPT:")
-        print(respuesta_gpt)
 
         reproducir_tts(respuesta_gpt)
     else:
